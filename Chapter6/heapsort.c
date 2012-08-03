@@ -99,4 +99,7 @@ void heapsort(int* A, int length)
 		h->heap_size = h->heap_size - 1;
 		max_heapify(&h, 0);
 	}
+	
+	for(i = 0;i < length;i++)
+		*(A+i) = *(h->data+i);
 }
