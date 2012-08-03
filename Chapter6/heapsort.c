@@ -26,19 +26,19 @@ typedef struct _heap
 
 /**
  * 初始化堆结构
- * @输入: A:操作堆, length: 数组长度, heap_size:堆长度;
+ * @参数: *A:操作堆, length: 数组长度;
  **/
-void init_heap(heap* A, int length, int heap_size)
+void init_heap(heap* A, int length)
 {
 	A->data = (int *)malloc(length * sizeof(int));
 	A->length = length;
-	A->heap_size = heap_size;
+	A->heap_size = 0;
 }
 
 /**
- * 保持最大堆性质函数
+ * 保持最大堆性质
  * 
- * @输入: A: 操作堆, i:根结点下标
+ * @参数: *A: 操作堆, i:根结点下标
  **/
 void max_heapify(heap* A, int i)
 {
@@ -59,6 +59,18 @@ void max_heapify(heap* A, int i)
 		*(A->data+largest) = tmd;
 		max_heapify(A, largest);
 	}
-	
 }
 
+/**
+ * 建堆
+ * 
+ * @参数: *A: 操作堆.
+ ***/
+void build_max_heap(heap* A)
+{
+	int i = 0;
+	
+	A->heap_size = A->length;
+	for(i = ((A->length)>>1);i > 0;i--)
+		max_heapify(A, i);
+}
