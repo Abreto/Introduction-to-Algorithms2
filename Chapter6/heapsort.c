@@ -87,19 +87,19 @@ void heapsort(int* A, int length)
 	init_heap(&h, length);
 	 
 	for(i = 0;i < length;i++)
-		*(h->data+i) = *(A+i);
+		*(h.data+i) = *(A+i);
 	build_max_heap(&h);
 	
 	for(i=length;i>1;i--)
 	{
-		*(h->data) = (*(h->data)) ^ (*(h->data+i-1));
-		*(h->data+i-1) = (*(h->data)) ^ (*(h->data+i-1));
-		*(h->data) = (*(h->data)) ^ (*(h->data+i-1));
+		*(h.data) = (*(h.data)) ^ (*(h.data+i-1));
+		*(h.data+i-1) = (*(h.data)) ^ (*(h.data+i-1));
+		*(h.data) = (*(h.data)) ^ (*(h.data+i-1));
 		
-		h->heap_size = h->heap_size - 1;
+		h.heap_size = h.heap_size - 1;
 		max_heapify(&h, 0);
 	}
 	
 	for(i = 0;i < length;i++)
-		*(A+i) = *(h->data+i);
+		*(A+i) = *(h.data+i);
 }
