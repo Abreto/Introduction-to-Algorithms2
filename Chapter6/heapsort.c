@@ -72,5 +72,31 @@ void build_max_heap(heap* A)
 	
 	A->heap_size = A->length;
 	for(i = ((A->length)>>1);i > 0;i--)
-		max_heapify(A, i);
+		max_heapify(A, i-1);
+}
+
+/**
+ * 堆排序
+ * 
+ * @参数: *A: 待排序数组, length: 数组长度.
+ **/
+void heapsort(int* A, int length)
+{
+	int i = 0;
+	heap h;
+	init_heap(&h, length);
+	 
+	for(i = 0;i < length;i++)
+		*(h->data+i) = *(A+i);
+	build_max_heap(&h);
+	
+	for(i=length;i>1;i--)
+	{
+		*(h->data) = (*(h->data)) ^ (*(h->data+i-1));
+		*(h->data+i-1) = (*(h->data)) ^ (*(h->data+i-1));
+		*(h->data) = (*(h->data)) ^ (*(h->data+i-1));
+		
+		h->heap_size = h->heap_size - 1;
+		max_heapify(&h, 0);
+	}
 }
