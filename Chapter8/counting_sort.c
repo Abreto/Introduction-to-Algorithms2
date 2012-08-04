@@ -24,6 +24,6 @@ void counting_sort(int* A, int *B, int n, int k)
 	for(j = n;j > 0;j--)
 	{
 		*(B+C[*(A+j-1)]) = *(A+j-1);
-		C[*(A+j-1)] = C[*A(+j-1)] - 1;
+		C[*(A+j-1)] = C[*(A+j-1)] - 1;
 	}
 }
